@@ -35,7 +35,7 @@ def scrape_all_words_gen() -> Iterator[str]:
 
 
 def scrape_pg_gen(page: requests.Response) -> Iterator[str]:
-    soup: BeautifulSoup = BeautifulSoup(page.content, "html.parser")
+    soup = BeautifulSoup(page.content, "html.parser")  # type: ignore
     ul = soup.find("ul", attrs={"data-testid": "list-az-results"})  # the ul w all words inside has specific attributes
     assert ul is not None  # issue if there is no ul tag
     for li in ul.find_all("li"):
